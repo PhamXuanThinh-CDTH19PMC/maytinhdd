@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Máy tính trên điện thoại'),
     );
   }
 }
@@ -27,6 +27,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+   Widget buildButton(String buttonText, double buitonHight, Color buttonColor) {
+    return Container(
+        height: MediaQuery.of(context).size.height * 0.1 * buitonHight,
+        color: buttonColor,
+        child: FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0.0),
+              side: BorderSide(
+                  color: Colors.white, width: 1, style: BorderStyle.solid)),
+          onPressed: () => buttonPressed(buttonText),
+          child: Text(
+            buttonText,
+            style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.normal,
+                color: Colors.white),
+          ),
+        ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +79,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * .75,
                 child: Table(
                   children: [
-                    TableRow(children: []),
-                    TableRow(children: []),
-                    TableRow(children: []),
-                    TableRow(children: []),
-                    TableRow(children: []),
+
+                    TableRow(children: [
+                      buildButton("C", 1, Colors.redAccent),
+                      buildButton("X", 1, Colors.black),
+                      buildButton("+", 1, Colors.blue),
+                    ]),
+                    TableRow(children: [  buildButton("7", 1, Colors.blue),
+                      buildButton("8", 1, Colors.blue),
+                      buildButton("9", 1, Colors.blue),
+                      ]),
+                    TableRow(children: [
+                       buildButton("4", 1, Colors.blue),
+                      buildButton("5", 1, Colors.blue),
+                      buildButton("6", 1, Colors.blue),
+                      ]),
+                    TableRow(children: [
+                       buildButton("1", 1, Colors.blue),
+                      buildButton("2", 1, Colors.blue),
+                      buildButton("3", 1, Colors.blue),
+                    ]),
+                    TableRow(children: [
+                      buildButton(".", 1, Colors.blue),
+                      buildButton("0", 1, Colors.blue),
+                      buildButton("00", 1, Colors.blue),
+                    ]),
+
                   ],
                 ),
               ),
@@ -72,32 +112,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * 0.25,
                 child: Table(
                   children: [
-                    TableRow(children: []),
-                    TableRow(children: []),
-                    TableRow(children: []),
-                    TableRow(children: []),
+
+                    TableRow(children: [
+                      buildButton("×", 1, Colors.blue),
+                    ]),
+                    TableRow(children: [
+                      buildButton("-", 1, Colors.blue),
+                    ]),
+                    TableRow(children: [
+                       buildButton("÷", 1, Colors.blue),
+                    ]),
+                    TableRow(children: [
+                      buildButton("=", 2, Colors.redAccent),
+                    ]),
+
                   ],
                 ),
               ),
             ],
           ),
         ],
-      ),
 
-      appBar: AppBar(
-        title: Text(widget.title),
       ),
-      body: Center(
- 
-        child: Column(
-       
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-        
-          ],
-        ),
-      ),
-  
 
     );
   }
