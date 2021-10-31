@@ -28,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   String equation = "0";
   String expretion = "";
   String resual = "0";
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget buildButton(String buttonText, double buitonHight, Color buttonColor) {
+   Widget buildButton(String buttonText, double buitonHight, Color buttonColor) {
     return Container(
         height: MediaQuery.of(context).size.height * 0.1 * buitonHight,
         color: buttonColor,
@@ -130,6 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildButton("X", 1, Colors.black),
                       buildButton("+", 1, Colors.blue),
                     ]),
+
                     TableRow(children: [
                       buildButton("7", 1, Colors.blue),
                       buildButton("8", 1, Colors.blue),
@@ -164,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildButton("-", 1, Colors.blue),
                     ]),
                     TableRow(children: [
-                      buildButton("÷", 1, Colors.blue),
+                       buildButton("÷", 1, Colors.blue),
                     ]),
                     TableRow(children: [
                       buildButton("=", 2, Colors.redAccent),
@@ -175,7 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ],
+
       ),
+
     );
   }
 }
