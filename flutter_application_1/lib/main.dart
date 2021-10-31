@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,52 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  String equation = "0";
+  String expretion = "";
+  String resual = "0";
+  double equationFontSize = 38.0;
+  double resulFontSize = 48.0;
+  buttonPressed(String buttonText) {
+    setState(() {
+      if (buttonText == "C") {
+        equation = "0";
+        resual = "0";
+        equationFontSize = 38.0;
+        resulFontSize = 48.0;
+      } else if (buttonText == "X") {
+        equation = equation.substring(0, equation.length - 1);
+        if (equation == "") {
+          equation = "0";
+          equationFontSize = 38.0;
+          resulFontSize = 48.0;
+        }
+      } else if (buttonText == "=") {
+        expretion = equation;
+        expretion = expretion.replaceAll('×', '*');
+        expretion = expretion.replaceAll('+', '+');
+        expretion = expretion.replaceAll('-', '-');
+        expretion = expretion.replaceAll('÷', '/');
+        try {
+          Parser p = Parser();
+          Expression exp = p.parse(expretion);
+          ContextModel cm = ContextModel();
+          resual = '${exp.evaluate(EvaluationType.REAL, cm)}';
+        } catch (e) {
+          resual = "Error";
+        }
+      } else {
+        if (equation == "0") {
+          equation = buttonText;
+          equationFontSize = 38.0;
+          resulFontSize = 48.0;
+        } else {
+          equation = equation + buttonText;
+        }
+      }
+    });
+  }
+
    Widget buildButton(String buttonText, double buitonHight, Color buttonColor) {
     return Container(
         height: MediaQuery.of(context).size.height * 0.1 * buitonHight,
@@ -46,10 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(title: Text(widget.title)),
       body: Column(
         children: <Widget>[
@@ -79,23 +126,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * .75,
                 child: Table(
                   children: [
-
                     TableRow(children: [
                       buildButton("C", 1, Colors.redAccent),
                       buildButton("X", 1, Colors.black),
                       buildButton("+", 1, Colors.blue),
                     ]),
-                    TableRow(children: [  buildButton("7", 1, Colors.blue),
+
+                    TableRow(children: [
+                      buildButton("7", 1, Colors.blue),
                       buildButton("8", 1, Colors.blue),
                       buildButton("9", 1, Colors.blue),
-                      ]),
+                    ]),
                     TableRow(children: [
-                       buildButton("4", 1, Colors.blue),
+                      buildButton("4", 1, Colors.blue),
                       buildButton("5", 1, Colors.blue),
                       buildButton("6", 1, Colors.blue),
-                      ]),
+                    ]),
                     TableRow(children: [
-                       buildButton("1", 1, Colors.blue),
+                      buildButton("1", 1, Colors.blue),
                       buildButton("2", 1, Colors.blue),
                       buildButton("3", 1, Colors.blue),
                     ]),
@@ -104,7 +152,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildButton("0", 1, Colors.blue),
                       buildButton("00", 1, Colors.blue),
                     ]),
-
                   ],
                 ),
               ),
@@ -112,7 +159,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * 0.25,
                 child: Table(
                   children: [
-
                     TableRow(children: [
                       buildButton("×", 1, Colors.blue),
                     ]),
@@ -125,7 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     TableRow(children: [
                       buildButton("=", 2, Colors.redAccent),
                     ]),
-
                   ],
                 ),
               ),
