@@ -30,6 +30,60 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(title: Text(widget.title)),
+      body: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+            child: Text(
+              equation,
+              style: TextStyle(fontSize: equationFontSize),
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+            child: Text(
+              result,
+              style: TextStyle(fontSize: resultFontSize),
+            ),
+          ),
+          Expanded(
+            child: Divider(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width * .75,
+                child: Table(
+                  children: [
+                    TableRow(children: []),
+                    TableRow(children: []),
+                    TableRow(children: []),
+                    TableRow(children: []),
+                    TableRow(children: []),
+                  ],
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.25,
+                child: Table(
+                  children: [
+                    TableRow(children: []),
+                    TableRow(children: []),
+                    TableRow(children: []),
+                    TableRow(children: []),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -44,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
   
+
     );
   }
 }
