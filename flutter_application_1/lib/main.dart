@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Máy tính trên điện thoại'),
     );
   }
 }
@@ -79,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * .75,
                 child: Table(
                   children: [
+
                     TableRow(children: [
                       buildButton("C", 1, Colors.redAccent),
                       buildButton("X", 1, Colors.black),
@@ -103,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildButton("0", 1, Colors.blue),
                       buildButton("00", 1, Colors.blue),
                     ]),
+
                   ],
                 ),
               ),
@@ -110,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * 0.25,
                 child: Table(
                   children: [
+
                     TableRow(children: [
                       buildButton("×", 1, Colors.blue),
                     ]),
@@ -122,16 +125,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     TableRow(children: [
                       buildButton("=", 2, Colors.redAccent),
                     ]),
+
                   ],
                 ),
               ),
             ],
           ),
         ],
-      ),
 
-      
-  
+      ),
 
     );
   }
